@@ -1,0 +1,171 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --emerald: 16 185 129; /* #10b981 */
+}
+
+body {
+  font-family: 'Inter', system_ui, sans-serif;
+  background: #0a0a0a;
+  color: #f1f5f9;
+  line-height: 1.6;
+}
+
+h1 {
+  color: green;
+}
+*{
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%
+}
+.nav-link {
+  background: none;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+}
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100vh;
+  max-width: 1300PX;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+#navbar__logo{
+  background-color: #34d399;
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Glassmorphism Navigation */
+nav {
+  background: rgba(10, 10, 10, 0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: rgb(var(--emerald));
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Hero with subtle gradient overlay */
+.hero-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #111827 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Service Cards - Elevated with unique hover */
+.service-card {
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: 0.7s;
+}
+
+.service-card:hover::before {
+  left: 200%;
+}
+
+.service-card:hover {
+  transform: translateY(-12px);
+  border-color: rgb(var(--emerald) / 0.3);
+  box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.15);
+}
+
+/* Project Cards */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+.project-card:hover {
+  box-shadow: 0 30px 60px -15px rgb(0 0 0 / 0.5);
+}
+
+/* Buttons */
+.btn-primary {
+  background: rgb(var(--emerald));
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: #34d399;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgb(16 185 129 / 0.4);
+}
+
+/* Section dividers */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+}
+
+/* Testimonials */
+.testimonial {
+  background: #111827;
+  border-left: 4px solid rgb(var(--emerald));
+}
+
+/* Footer accent */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
