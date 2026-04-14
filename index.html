@@ -3,124 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YemTech | Professional Web Solutions</title>
-    <link rel="stylesheet" href="stylesheet.css">
+    <title>YEMTECH | Web Development & Virtual Assistance</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: #fff; color: #0f172a; line-height: 1.6; padding-bottom: 120px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+        h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; text-align: center; }
+        h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .highlight { color: #2563eb; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header p { color: #334155; font-size: 1.2rem; }
+
+        /* ===== MAGIC TAB BAR (Bottom Navigation) ===== */
+        .magic-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 700px;
+            background: #181818;
+            border-radius: 30px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .magic-nav a {
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #b0bfd8;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        .magic-nav a i { font-size: 22px; margin-bottom: 3px; }
+        .magic-nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #ffffff, 0 0 15px #3b82f6;
+            background: rgba(255,255,255,0.05);
+        }
+        .magic-nav a.active {
+            color: #3b82f6;
+            text-shadow: 0 0 10px #3b82f6;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn { display: inline-block; padding: 12px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .btn-outline { background: transparent; color: #2563eb; border: 2px solid #2563eb; }
+        .btn-outline:hover { background: #2563eb; color: white; }
+        .btn-light { background: white; color: #2563eb; }
+        .btn-light:hover { background: #f8fafc; transform: translateY(-2px); }
+
+        /* ===== HERO ===== */
+        #home { background: #f8fafc; }
+        .hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-description { font-size: 1.2rem; color: #334155; margin-bottom: 32px; }
+        .hero-buttons { display: flex; gap: 16px; }
+        .hero-image img { width: 100%; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+
+        /* ===== FEATURES / SERVICES ===== */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
+        .feature-card { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); text-align: center; transition: all 0.3s; border-top: 4px solid #2563eb; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .feature-icon { font-size: 2.5rem; color: #2563eb; margin-bottom: 20px; }
+        .payment-methods { background: white; padding: 40px; border-radius: 20px; margin-top: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .payment-icons { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: center; margin: 20px 0; }
+        .payment-icons i { font-size: 2.5rem; color: #334155; margin: 0 10px; }
+        .payment-icons span { font-weight: 600; margin: 0 15px; }
+        .payment-methods h3 { text-align: center; }
+
+        /* ===== ABOUT ===== */
+        #about { background: #f8fafc; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-image img { width: 100%; border-radius: 20px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+
+        /* ===== WORK ===== */
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .work-item { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .work-item img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s; }
+        .work-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; transform: translateY(100%); transition: transform 0.3s; }
+        .work-item:hover .work-overlay { transform: translateY(0); }
+        .work-item:hover img { transform: scale(1.1); }
+
+        /* ===== CONTACT ===== */
+        #contact { background: #f8fafc; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+        .contact-info-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
+        .contact-icon { width: 50px; height: 50px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .contact-detail h3 { margin-bottom: 5px; }
+        .contact-detail a { color: #2563eb; text-decoration: none; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 16px; margin-bottom: 20px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; }
+        .contact-form button { width: 100%; }
+        .social-links { display: flex; gap: 20px; margin-top: 20px; }
+        .social-links a { width: 45px; height: 45px; background: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0f172a; font-size: 1.3rem; transition: all 0.3s; }
+        .social-links a:hover { background: #2563eb; color: white; transform: translateY(-3px); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #0f172a; color: white; padding: 40px 0 20px; text-align: center; }
+        .footer .social-icons { margin: 20px 0; }
+        .footer .social-icons a { color: white; margin: 0 10px; font-size: 1.5rem; }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero-container, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .magic-nav a { min-width: 60px; font-size: 11px; }
+            .magic-nav a i { font-size: 20px; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">YourBrand</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="work.html" class="nav-link">Work</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <a href="contact.html" class="nav-btn">Get in Touch <i class="fas fa-arrow-right"></i></a>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
+
+    <!-- ===== MAGIC TAB BAR (Bottom Navigation) ===== -->
+    <nav class="magic-nav">
+        <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+        <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+        <a href="#work"><i class="fas fa-briefcase"></i> Work</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="#about"><i class="fas fa-user"></i> About</a>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
+    <!-- ===== HOME SECTION ===== -->
+    <section id="home">
+        <div class="container hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">We Build <span class="highlight">Digital Experiences</span> That Matter</h1>
-                <p class="hero-description">From custom WordPress sites to seamless payment gateways, we turn your vision into reality with professional development and virtual assistance via AnyDesk.</p>
+                <h1>We Build <span class="highlight">Digital Experiences</span> That Matter</h1>
+                <p class="hero-description">YEMTECH delivers professional <strong>WordPress & Shopify</strong> development, secure payment gateway integration, and virtual assistance via AnyDesk. Your success is our priority.</p>
                 <div class="hero-buttons">
-                    <a href="services.html" class="btn btn-primary">Explore Services</a>
-                    <a href="work.html" class="btn btn-outline">View Our Work</a>
+                    <a href="#services" class="btn btn-primary">Explore Services</a>
+                    <a href="#work" class="btn btn-outline">View Our Work</a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://placehold.co/600x400/2563eb/FFFFFF?text=Your+Hero+Image" alt="Professional web development">
+                <img src="image/head-banner.png" alt="YEMTECH workspace">
             </div>
         </div>
     </section>
 
-    <section class="features">
+    <!-- ===== SERVICES SECTION ===== -->
+    <section id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Why Businesses Choose Us</h2>
-                <p>We deliver solutions that are fast, secure, and tailored to your needs.</p>
+                <h2>What We Do Best</h2>
+                <p>Comprehensive web solutions tailored for your business.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fab fa-wordpress"></i></div>
-                    <h3>WordPress Experts</h3>
-                    <p>Custom themes, plugins, and full‑site builds. We make WordPress work for you.</p>
+                    <h3>WordPress Development</h3>
+                    <p>Custom themes, plugins, WooCommerce, and full site builds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fab fa-shopify"></i></div>
+                    <h3>Shopify Development</h3>
+                    <p>Custom store setups, theme customization, and app integration.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
                     <h3>Payment Gateway Setup</h3>
-                    <p>Seamless integration with Stripe, PayPal, and more. Sell online with confidence.</p>
+                    <p>Seamless integration with Stripe, PayPal, Razorpay, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-university"></i></div>
+                    <h3>ACH / Wire Transfer</h3>
+                    <p>We support direct bank transfers and ACH payments for your business.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-headset"></i></div>
                     <h3>Virtual Assistance</h3>
-                    <p>Need help? We provide AnyDesk support to guide you through every step.</p>
+                    <p>Remote support via AnyDesk – we guide you step‑by‑step.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Responsive Design</h3>
+                    <p>Flawless performance on desktop, tablet, and mobile.</p>
                 </div>
             </div>
-            <div class="image-showcase">
-                <img src="https://placehold.co/1000x300/0f172a/FFFFFF?text=Showcase+Image+Placeholder" alt="Our workspace">
+
+            <!-- Payment Methods Showcase -->
+            <div class="payment-methods">
+                <h3><i class="fas fa-hand-holding-usd"></i> We Accept & Integrate</h3>
+                    <div class="payment-icons">
+                    <i class="fab fa-cc-paypal"></i><span>PayPal</span>
+                    <i class="fab fa-cc-stripe"></i><span>Stripe</span>
+                    <i class="fas fa-credit-card"></i><span>Razorpay</span>
+                    <i class="fas fa-university"></i><span>ACH / Wire</span>
+                    <i class="fas fa-building-columns"></i><span>Bank Account</span>
+                </div>
+                <p style="text-align:center; margin-top:20px;">We also set up <strong>ACH / Wire Transfer</strong> and direct <strong>bank account payments</strong> for your customers. Need a custom gateway? We've got you covered.</p>
             </div>
         </div>
     </section>
 
-    <section class="cta">
+    <!-- ===== WORK / PORTFOLIO SECTION ===== -->
+    <section id="work">
         <div class="container">
-            <h2>Ready to take your online presence to the next level?</h2>
-            <p>Let's create something exceptional together.</p>
-            <a href="contact.html" class="btn btn-light">Start a Project</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-logo">
-                <a href="index.html">YourBrand</a>
-                <p>Professional web solutions & virtual assistance.</p>
+            <div class="section-header">
+                <h2>Recent Projects</h2>
+                <p>A selection of our favorite work.</p>
             </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="work.html">Work</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
+            <div class="work-grid">
+                <div class="work-item">
+                    <img src="image/img-1.jpg" alt="Project">
+                    <div class="work-overlay"><h3>E‑commerce Store</h3><p>WooCommerce + Stripe</p></div>
+                </div>
+                <div class="work-item">
+                    <img src="image/img-2.jpg" alt="Project">
+                    <div class="work-overlay"><h3>Shopify Store</h3><p>Custom Theme & Apps</p></div>
+                </div>
+                <div class="work-item">
+                    <img src="image/img-3.jpg" alt="Project">
+                    <div class="work-overlay"><h3>Corporate Website</h3><p>WordPress Custom Theme</p></div>
+                </div>
+                <div class="work-item">
+                    <img src="image/img-4.jpg" alt="Project">
+                    <div class="work-overlay"><h3>Payment Integration</h3><p>ACH & Wire Transfer Setup</p></div>
+                </div>
+                <div class="work-item">
+                    <img src="image/img-5.jpg" alt="Project">
+                    <div class="work-overlay"><h3>Portfolio Site</h3><p>Responsive Design</p></div>
+                </div>
+                <div class="work-item">
+                    <img src="image/img-6.jpg" alt="Project">
+                    <div class="work-overlay"><h3>Virtual Assistance</h3><p>AnyDesk Support</p></div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 YourBrand. All rights reserved.</p>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>We're here to help – reach out anytime.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-detail">
+                            <h3>Call / WhatsApp</h3>
+                            <p><a href="tel:+2347049072784">+234 704 907 2784</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-detail">
+                            <h3>Email Us</h3>
+                            <p><a href="mailto:opeyemiakande666@gmail.com">opeyemiakande666@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-detail">
+                            <h3>Visit Us</h3>
+                            <p>Block B1 Shop 65, New Kuje Shopping Complex<br>Kuje, Abuja, Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-desktop"></i></div>
+                        <div class="contact-detail">
+                            <h3>AnyDesk Remote Support</h3>
+                            <p>Request a session ID via email or call.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" rows="5" placeholder="How can we help?"></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About YEMTECH</h2>
+                <p>Your trusted partner for web development and virtual assistance.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Our Story</h3>
+                    <p>YEMTECH was founded with a clear mission: to provide reliable, professional web development services for businesses of all sizes. We specialize in <strong>WordPress and Shopify</strong>, helping clients build robust online stores and corporate websites.</p>
+                    <p style="margin-top:20px;">Beyond development, we offer <strong>virtual assistance via AnyDesk</strong> – whether you need help configuring a plugin, setting up a payment gateway, or managing your site, we're just a remote session away.</p>
+                    <p style="margin-top:20px;">We are based in <strong>Kuje, Abuja</strong>, serving clients locally and internationally.</p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top:30px;">Work With Us</a>
+                </div>
+                <div class="about-image">
+                    <img src="image/about.me.jpg" alt="YEMTECH Team, width-size= 50 height-size= 60;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <h3 style="color:white;">YEMTECH</h3>
+            <p>Professional web solutions & virtual assistance.</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1HXBQX4oTA/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/yemtech01" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+            <p style="margin-top:30px;">📍 Block B1 Shop 65, New Kuje Shopping Complex, Kuje, Abuja</p>
+            <p>📞 +234 704 907 2784 | ✉️ opeyemiakande666@gmail.com</p>
+            <p style="margin-top:20px; opacity:0.7;">&copy; 2026 YEMTECH. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- ===== ACTIVE TAB HIGHLIGHT ON SCROLL ===== -->
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.magic-nav a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+            });
         });
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
     </script>
 </body>
 </html>
