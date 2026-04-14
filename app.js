@@ -92,12 +92,12 @@
           });
         }
       });
-    });
+    }) ;
   }
 
   // Scroll Animations with Intersection Observer
   function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
+    const {observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';

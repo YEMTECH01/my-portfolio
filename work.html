@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | YEMTECH</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">YEMTECH</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="work.html" class="nav-link active">Work</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn">Get in Touch <i class="fas fa-arrow-right"></i></a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Recent Projects</h1>
+            <p>A selection of our favorite work.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="work-filter">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">WordPress</button>
+            <button class="filter-btn">E‑commerce</button>
+            <button class="filter-btn">Custom</button>
+        </div>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/2563eb/FFFFFF?text=Project+1" alt="Project 1">
+                <div class="work-overlay">
+                    <h3>E‑commerce Store</h3>
+                    <p>WooCommerce + Stripe</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/0f172a/FFFFFF?text=Project+2" alt="Project 2">
+                <div class="work-overlay">
+                    <h3>Corporate Website</h3>
+                    <p>WordPress Custom Theme</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/2563eb/FFFFFF?text=Project+3" alt="Project 3">
+                <div class="work-overlay">
+                    <h3>Portfolio Site</h3>
+                    <p>Responsive Design</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/0f172a/FFFFFF?text=Project+4" alt="Project 4">
+                <div class="work-overlay">
+                    <h3>Membership Platform</h3>
+                    <p>Payment Gateway Integration</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/2563eb/FFFFFF?text=Project+5" alt="Project 5">
+                <div class="work-overlay">
+                    <h3>Landing Page</h3>
+                    <p>High Conversion Focus</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="https://placehold.co/400x300/0f172a/FFFFFF?text=Project+6" alt="Project 6">
+                <div class="work-overlay">
+                    <h3>Virtual Assistance</h3>
+                    <p>AnyDesk Support Setup</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta" style="margin-top:60px;">
+        <div class="container">
+            <h2>Have a project in mind?</h2>
+            <p>Let's bring your ideas to life.</p>
+            <a href="contact.html" class="btn btn-light">Start a Conversation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <a href="index.html">YEMTECH</a>
+                <p>Professional web solutions & virtual assistance.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YourBrand. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Simple filter (just for demo – all buttons show all items)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // For real filtering, you'd add logic here; for simplicity, all items remain visible.
+            });
+        });
+    </script>
+</body>
+</html>
